@@ -39,7 +39,7 @@ class Game:
                             #self.guesses = 
                         elif Phrase.check_letter(self.active_phrase) == False:
                             print('boom')
-                            guess.append(self.past_guesses)
+                            self.past_guesses.append(guess)
                             print('Letter not in phrase. Please try again!')
                             self.guesses += 1
                         else:
