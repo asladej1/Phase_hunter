@@ -9,7 +9,7 @@ class Game:
     def __init__(self):
         self.incorrect = 0
         self.list_of_phrases = [Phrase('Is the juice worth the squeeze'), Phrase('Green Lights'), Phrase('An Arm and a Leg'), Phrase('Dime a Dozen'), Phrase('Down to the Wire')]
-        self.active_phrase = self.get_random_phrase
+        self.active_phrase = self.get_random_phrase()
         self.past_guesses = ['a']
        
         
