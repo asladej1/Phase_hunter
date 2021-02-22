@@ -13,14 +13,17 @@ class Phrase():
         
     def display(self, guess):
         display_phrase = []
-        for letter in self.phrase:
-            if letter in guess:
-                display_phrase.append(letter)
-            elif letter == ' ':
-                display_phrase.append(' ')       
-            else:
-                display_phrase.append('_')
-        print(' '.join(display_phrase))
+        
+        #Can't get this to run
+        while self.check_complete() == False:
+            for letter in self.phrase:
+                if guess in self.phrase:
+                    display_phrase.append(letter)
+                elif letter == ' ':
+                    display_phrase.append(' ')       
+                else:
+                    display_phrase.append('_')
+            print(' '.join(display_phrase))
         
          
     def check_letter(self,guess):
@@ -40,4 +43,3 @@ class Phrase():
 #go = Phrase()
 #go.display("j")
 #go.check_letter("j")
-          
