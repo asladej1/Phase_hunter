@@ -10,7 +10,7 @@ class Game:
         self.incorrect = 0
         self.list_of_phrases = [Phrase('Is the juice worth the squeeze'), Phrase('Green Lights'), Phrase('An Arm and a Leg'), Phrase('Dime a Dozen'), Phrase('Down to the Wire')]
         self.active_phrase = self.get_random_phrase()
-        self.past_guesses = ['a']
+        self.past_guesses = []
        
         
         
@@ -28,22 +28,29 @@ class Game:
         rules = print("\nRules: \n******Try and guesses the phrase! Select a letter on a time, if you can't solve it before your 5 guess up you lose. Good luck!.******\n\n")
     
     def get_guess(self):
-        #while Phrase.check_complete == False:
+        while self.incorrect < 5:
+            guess = input('Please enter a letter:  ')
+            
+            self.active_phrase.display(guess)
+            
             try:
-                guess = input('Please enter a letter:  ')
-                
+
                 if len(guess) <2 and len(guess)>0:
                     if guess.isalpha():                         
                         if guess in self.past_guesses:
                             print('Whoops, looks like you guessed that already')
                             #self.guesses = 
-                        elif self.active_phrase.check_letter(guess)  == False:
-                            print('boom')
+                        elif self.active_phrase.check_letter(guess) == False:
                             self.past_guesses.append(guess)
-                            print('Letter not in phrase. Please try again!')
-                            self.guesses += 1
+                            print('Sorry, that letter is not in phrase. Please try again!')
+                            self.incorrect += 1
+                            print(self.past_guesses)
+                            
                         else:
-                            pass
+                            if guess in self.active_phrase:
+                                pass
+                                
+                            
                     else:
                         print('Sorry Letters Only!')
                 else:
@@ -57,5 +64,6 @@ class Game:
     
     def game_over(self):
         pass
+    
     
 
