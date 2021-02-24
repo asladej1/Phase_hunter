@@ -1,7 +1,3 @@
-# Create your Phrase class logic here.
-
-
-
 class Phrase():
     
     
@@ -11,19 +7,22 @@ class Phrase():
         self.phrase = phrase
         
         
-    def display(self, guess):
+    def display(self, phrase):
         display_phrase = []
-        
+        self.phrase = phrase
+        self.guess = guess
+      
+       
         #Can't get this to run
-        while self.check_complete() == False:
-            for letter in self.phrase:
-                if guess in self.phrase:
-                    display_phrase.append(letter)
-                elif letter == ' ':
-                    display_phrase.append(' ')       
-                else:
-                    display_phrase.append('_')
-            print(' '.join(display_phrase))
+        #while check_complete() == False:
+        for letter in self.phrase:
+#            if self.guess in self.phrase:
+#                display_phrase.append(letter)
+            if letter == ' ':
+                display_phrase.append(' ')       
+            else:
+                display_phrase.append('_')
+        print(' '.join(display_phrase))
         
          
     def check_letter(self,guess):
@@ -34,10 +33,11 @@ class Phrase():
         
         
     def check_complete(self):
-        if display_phrase == self.phrase:
+        if self.display() == self.phrase:
             return True
         else:
             return False
+    
     
     
 #go = Phrase()
