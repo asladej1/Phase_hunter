@@ -7,76 +7,55 @@ import random
 class Game:
     
     def __init__(self):
-        self.incorrect = 0
-        self.list_of_phrases = [('Is the juice worth the squeeze'), ('Green Lights'), ('An Arm and a Leg'), ('Dime a Dozen'), ('Down to the Wire')]
-        self.active_phrase = random.choice(self.list_of_phrases)
-        self.past_guesses = []
+        self.missed = 0
+        self.phrases = [Phrase('Is the juice worth the squeeze'), Phrase('Green Lights'), Phrase('An Arm and a Leg'), Phrase('Dime a Dozen'), Phrase('Down to the Wire')]
+        self.active_phrase = self.get_random_phrase()
+        self.guesses = [" "]
         
-    
     def welcome(self):
-        GREETING = "======> Welcome to Phrase Hunter <====="
+        GREETING = "==========================\n Welcome to Phrase Hunter\n=========================="
         print(GREETING.upper())
-        rules = print("\nRules: \n******Try and guesses the phrase! Select a letter on a time, if you can't solve it before your 5 guess up you lose. Good luck!.******\n\n")
-        
+        rules = print("\nRules: \n******Try and guesses the phrase! Select a letter on a time, if you can't solve it before your 5 guess up you lose. Good luck!.******\n\n")    
     
     def get_random_phrase(self):
-        print(Phrase.display(self,self.active_phrase))
+        sel_phrase = random.choice(self.phrases)
+        return sel_phrase
     
-    def get_guess(self):
-        
-        
-        while self.incorrect < 5:
-            guess = input('Please enter a letter:  ')
-            
-            try:
-
-                if len(guess) <2 and len(guess)>0:
-                    if guess.isalpha():                         
-                        if guess in self.past_guesses:
-                            print('Whoops, looks like you guessed that already')
-                        
-                        elif Phrase.check_letter(self,guess) == False:
-                            self.past_guesses.append(guess)
-                            print('Sorry, that letter is not in phrase. Please try again!')
-                            self.incorrect += 1
-                            print(self.past_guesses)
-                            
-                        else:
-                            if guess in self.active_phrase:
-                                pass
-                                
-                            
-                    else:
-                        print('Sorry Letters Only!')
-                else:
-                    raise ValueError
-        
-            except ValueError as err:
-                print("\nInvalid input. Please enter one letter at a time")
-    
-    
-    def start_game(self):
+    def start(self):
         self.welcome()
-        self.get_random_phrase()
+        while self.missed < 5 and self.active_phrase.check_complete(self.guesses) == False:
+          print(f'Number missed: {self.missed}')
+          self.active_phrase.display(self.guesses)
+          user_guess = self.get_guess()
+          self.guesses.append(user_guess)
+          if not self.active_phrase.check_guess(user_guess):
+            self.missed += 1
+          self.active_phrase.check_complete(self.guesses)
+        self.game_over()
         
-        self.get_guess()
-    
-    
-        
-    
-        
-    
-   
-    
-    
-            
-         
-            
-    
     def game_over(self):
-        pass
+      if self.missed == 5:
+        print("Sorry, Game Over...")
+      else:
+        print("You guessed it right! Congratualations!")
+        
+        
+    def get_guess(self):
+        try:
+          self.guess = input('Please enter letter: ')
+          
+      
+          
+          if len(self.guess) > 1:
+            print('1')
+          
+          else:
+            raise ValueError
+          
+          #else:
+          #return self.guess
+        
+        except ValueError as err:
+          print('\nInvalid input. One letter at a time.')
+        
     
-
-
-    
-
