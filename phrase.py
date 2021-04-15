@@ -30,7 +30,7 @@ class Phrase:
         for letter in self.phrase:
             if str(letter) not in guesses:
                 return False
-            else:
-                return True
+            
+        return True
         
       
