@@ -20,7 +20,7 @@ class Phrase:
         print(' '.join(display))       
       
     def check_guess(self, guess):
-        if guess in self.phrase:
+        if str(guess) in self.phrase:
             return True
 
         else:
@@ -28,8 +28,9 @@ class Phrase:
     
     def check_complete(self, guesses):
         for letter in self.phrase:
-            if letter not in guesses:
+            if str(letter) not in guesses:
                 return False
             else:
                 return True
         
+      
