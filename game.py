@@ -41,17 +41,10 @@ class Game:
         
         
     def get_guess(self):
-        try:
             self.guess = input('Please enter letter: ')
-    
-            if len(self.guess) > 1:
-                raise ValueError
-          
-            elif self.guess.isdigit():
-                raise ValueError
-          
-            else:
-              return self.guess
-        
-        except ValueError as err:
-            print('\nInvalid input. Has to be ONE LETTER at a time.\n')
+            
+            while len(self.guess) > 1 or self.guess.isdigit():
+                print("Invalid input. Only one letter at a time\n")
+                self.guess = input('\nPlease enter a letter: ')
+            
+            return self.guess
