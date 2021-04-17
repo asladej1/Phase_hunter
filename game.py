@@ -41,6 +41,26 @@ class Game:
         
         
     def get_guess(self):
+            guess = input('Please enter letter: ')
+            
+            while guess in self.guesses:
+                    print("You've already guessed that letter. Try again.\n")
+                    print(f"Number missed:{self.missed}")
+                    guess = input('Please enter letter: ')
+            
+            while len(guess) > 1 or guess.isdigit():
+                print("Invalid input. Only one letter at a time\n")
+                print(f"Number missed:{self.missed}")
+                guess = input('\nPlease enter a letter: ')
+                
+            
+            return guess
+            print("Sorry, Game Over...")
+        else:
+            print("You guessed it right! Congratualations!")
+        
+        
+    def get_guess(self):
             self.guess = input('Please enter letter: ')
             
             while len(self.guess) > 1 or self.guess.isdigit():
