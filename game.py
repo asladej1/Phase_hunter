@@ -38,7 +38,7 @@ class Game:
         if self.missed == 5:
             print("Sorry, Game Over...")
         else:
-            print("You guessed it right! Congratualations!")
+            print("You guessed it right! Congratualations!\n")
     
         self.new_game()
         
@@ -68,4 +68,5 @@ class Game:
             print(game.active_phrase.phrase)
             game.start()
         else:
+            print('\nThank you for playing!')
             exit()
