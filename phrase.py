@@ -32,5 +32,3 @@ class Phrase:
                 return False
             
         return True
-        
-      
