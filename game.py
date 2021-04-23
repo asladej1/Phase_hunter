@@ -45,28 +45,29 @@ class Game:
     def get_guess(self):
             guess = input('Please enter letter: \n')
             
-            while guess in self.guesses:
+            while guess.lower() in self.guesses:
                 print("\nYou've already guessed that letter. Try again.\n")
                 print(f"Number missed:{self.missed}\n")
                 self.active_phrase.display(self.guesses)
                 guess = input('Please enter letter: ')
                     
             
-            while len(guess) > 1 or guess.isdigit():
+            while len(guess.lower()) > 1 or guess.isdigit():
                 print("\nInvalid input. Only one letter at a time\n")
                 print(f"Number missed:{self.missed}\n")
                 self.active_phrase.display(self.guesses)
                 guess = input('\nPlease enter a letter: ')
                 
             
-            return guess
+            return guess.lower()
                 
     def new_game(self):
-        restart = input("Would you like to play again?:  ")
-        if restart.lower() == "yes":
+        restart = input("Would you like to play again? (Yes or Y to play again, anything else for no):  ")
+        if restart.lower() == "yes" or "y":
             game = Game()
             print(game.active_phrase.phrase)
             game.start()
         else:
             print('\nThank you for playing!')
             exit()
+
