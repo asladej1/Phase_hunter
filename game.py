@@ -65,7 +65,7 @@ class Game:
         restart = input("Would you like to play again? (Yes or Y to play again, anything else for no):  ")
         if restart.lower() == "yes" or "y":
             game = Game()
-            print(game.active_phrase.phrase)
+            #print(game.active_phrase.phrase)
             game.start()
         else:
             print('\nThank you for playing!')
