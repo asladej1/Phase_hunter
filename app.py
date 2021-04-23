@@ -7,6 +7,6 @@ if __name__ == '__main__':
     
         
     game = Game()
-    print(game.active_phrase.phrase)
+    #print(game.active_phrase.phrase)
     game.start()
     
